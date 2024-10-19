@@ -1,1 +1,5 @@
+useDynLib(hdbcp, .registration=TRUE)
+importFrom(Rcpp, evalCpp)
+importFrom("dplyr", "%>%")
+importFrom("stats", "runif")
 exportPattern("^[[:alpha:]]+")

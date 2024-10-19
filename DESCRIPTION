@@ -20,3 +20,6 @@ Encoding: UTF-8
 LazyData: true
 URL: https://github.com/JaeHoonKim98/hdbcp
 BugReports: https://github.com/JaeHoonKim98/hdbcp/issues
+RoxygenNote: 7.3.2
+Imports: Rcpp, stats, dplyr
+LinkingTo: Rcpp, RcppArmadillo
