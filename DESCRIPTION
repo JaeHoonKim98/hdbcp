@@ -1,0 +1,20 @@
+Package: hdbcp
+Type: Package
+Title: Bayesian Change Point Detection for High-Dimensional Data
+Version: 0.1.0
+Authors@R:
+    c(person(given = "JaeHoon",
+           family = "Kim", 
+           role = c("aut", "cre"),
+           email="jhkimstat@gmail.com"),
+      person(given = "KyoungJae",
+           family = "Lee", 
+           role = c("aut","ths"),
+           email="leekjstat@gmail.com")
+           )
+Maintainer: JaeHoon Kim <jhkimstat@gmail.com>
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: usethis::use_gpl_license(version = 3, include_future = TRUE)
+Encoding: UTF-8
+LazyData: true
