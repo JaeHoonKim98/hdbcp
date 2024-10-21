@@ -21,5 +21,11 @@ LazyData: true
 URL: https://github.com/JaeHoonKim98/hdbcp
 BugReports: https://github.com/JaeHoonKim98/hdbcp/issues
 RoxygenNote: 7.3.2
-Imports: Rcpp, stats, dplyr
+Imports: 
+    Rcpp, 
+    stats, 
+    dplyr, 
+    matrixStats
+Suggests:
+    matrixStats
 LinkingTo: Rcpp, RcppArmadillo
