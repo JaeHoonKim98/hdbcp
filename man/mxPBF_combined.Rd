@@ -46,7 +46,7 @@ A list provided. Each element in the list contains: \describe{
 \description{
 This function detects change points in both mean and covariance structure of multivariate Gaussian data using the Maximum Pairwise Bayes Factor (mxPBF).
 The function selects alpha that controls the empirical False Positive Rate (FPR), as suggested in the paper.
-The function conducts a multiscale approach using the function \code{majority_mxPBF()}.
+The function conducts a multiscale approach using the function.
 }
 \examples{
 \dontrun{
@@ -72,7 +72,11 @@ for (i in 1:10) {
     }
   }
 }
-Y <- rbind(mvrnorm(150,mu1,sigma1), mvrnorm(150,mu2,sigma1), mvrnorm(100,mu2,sigma2), mvrnorm(100,mu1,sigma2))
+Y <- rbind(
+mvrnorm(150,mu1,sigma1),
+mvrnorm(150,mu2,sigma1),
+mvrnorm(200,mu2,sigma2)
+)
 mxPBF_mean(Y, nws, alps)
 }
 
