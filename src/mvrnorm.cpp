@@ -1,4 +1,5 @@
 #include <RcppArmadillo.h>
+#include "mvrnorm.h"
 using namespace Rcpp;
 using namespace arma;
 
