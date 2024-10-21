@@ -58,7 +58,7 @@ mxPBF_cov <- function(given_data, a0 = 0.01, b0 = 0.01, nws, alps, FPR_want = 0.
   }
   if (centering == "median") {
     library(matrixStats)
-    medians <- matrixStats::colMedians(given_data)
+    medians <- colMedians(given_data)
     centered_data <- sweep(given_data, 2, medians, FUN = "-")
   }
   if (centering == "skip") {
