@@ -146,9 +146,9 @@ generate_cov_datasets <- function(n = 500, p = 200, signal_size = 1, sparse = TR
   U_many <- gen_U(p,signal_size,rare=F)
   sigma_R <- sigma + U_rare
   sigma_M <- sigma + U_many
-  min_eigen1 <- sigma %>% eigen %>% .$values %>% min
-  min_eigen2 <- sigma_R %>% eigen %>% .$values %>% min
-  min_eigen3 <- sigma_M %>% eigen %>% .$values %>% min
+  min_eigen1 <- min(eigen(sigma)$values)
+  min_eigen2 <- min(eigen(sigma_R)$values)
+  min_eigen3 <- min(eigen(sigma_M)$values)
   if (any(c(min_eigen1,min_eigen2,min_eigen3) < 1e-5)) {
     delta <- abs(min(c(min_eigen1,min_eigen2,min_eigen3))) + 0.05
     sigma <- sigma + delta * diag(p)

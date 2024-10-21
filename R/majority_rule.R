@@ -1,4 +1,4 @@
-majority_rule_mxPBF <- function(result_mxPBFs, nws) {
+majority_rule_mxPBF <- function(result_mxPBFs, nws, n) {
   post_process <- function(detected_points_list, nw) {
     W <- length(detected_points_list)
     groups <- list()
