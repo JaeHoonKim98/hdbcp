@@ -1,3 +1,28 @@
+#' Majority Rule for Multiscale approach using mxPBF Results
+#'
+#' This function implements a majority rule-based post-processing approach to identify common change points across multiple window sizes from mxPBF results.
+#'
+#' @param result_mxPBFs A list of results from \code{mxPBF_mean()} or \code{mxPBF_cov()}.
+#' @param nws A vector of window sizes used for \code{mxPBF_mean()} or \code{mxPBF_cov()}.
+#' @param n The total number of observations in the dataset.
+#'
+#' @return A vector of final detected change points that are common across multiple windows based on majority rule.
+#'
+#'
+#' @examples
+#' \donotrun{
+#' n <- 500
+#' p <- 200
+#' signal_size <- 1
+#' pre_value <- 0.3
+#' pre_proportion <- 0.4
+#' given_datasets <- generate_mean_datasets(n, p, signal_size, pre_proportion, pre_value,
+#' single_point = 250, multiple_points = c(150,300,350), type = 5)
+#' res_mxPBF <- mxPBF_mean(given_data, nws, alps)
+#' majority_rule_mxPBF(res_mxPBF, nws, n)
+#' }
+#'
+#' @export
 majority_rule_mxPBF <- function(result_mxPBFs, nws, n) {
   post_process <- function(detected_points_list, nw) {
     W <- length(detected_points_list)
