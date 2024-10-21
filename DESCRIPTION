@@ -24,8 +24,7 @@ RoxygenNote: 7.3.2
 Imports: 
     Rcpp, 
     stats, 
-    dplyr, 
-    matrixStats
+    dplyr
 Suggests:
     matrixStats
 LinkingTo: Rcpp, RcppArmadillo

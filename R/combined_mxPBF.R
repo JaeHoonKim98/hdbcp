@@ -2,7 +2,7 @@
 #'
 #' This function detects change points in both mean and covariance structure of multivariate Gaussian data using the Maximum Pairwise Bayes Factor (mxPBF).
 #' The function selects alpha that controls the empirical False Positive Rate (FPR), as suggested in the paper.
-#' The function conducts a multiscale approach using the function \code{majority_mxPBF()}.
+#' The function conducts a multiscale approach using the function.
 #'
 #' @param given_data An \eqn{(n \times p)} data matrix representing \eqn{n} observations and \eqn{p} variables.
 #' @param a0 A hyperparameter \eqn{a_0} used in the mxPBF (default: 0.01).
@@ -45,7 +45,11 @@
 #'     }
 #'   }
 #' }
-#' Y <- rbind(mvrnorm(150,mu1,sigma1), mvrnorm(150,mu2,sigma1), mvrnorm(100,mu2,sigma2), mvrnorm(100,mu1,sigma2))
+#' Y <- rbind(
+#' mvrnorm(150,mu1,sigma1),
+#' mvrnorm(150,mu2,sigma1),
+#' mvrnorm(200,mu2,sigma2)
+#' )
 #' mxPBF_mean(Y, nws, alps)
 #' }
 #'
@@ -67,7 +71,7 @@ mxPBF_combined <- function(given_data, a0 = 0.01, b0 = 0.01, nws, alps, FPR_want
   # Applying covariance method
   res_cov <- mxPBF_cov(given_data = centered_data, a0 = a0, b0 = b0, nws = nws, alps = alps, FPR_want = FPR_want, n_sample = n_sample, n_cores = n_cores, centering = "skip")
 
-  changes_cov <- majority_method(res_cov, nws)
+  changes_cov <- majority_rule_mxPBF(res_cov, nws, n)
 
   res_mean_list <- list()
   changes_mean <- list()
@@ -80,7 +84,7 @@ mxPBF_combined <- function(given_data, a0 = 0.01, b0 = 0.01, nws, alps, FPR_want
     if (length(nws_mean)>0) {
       res_mean <- mxPBF_mean(data_segmented, nws_mean, alps, FPR_want, n_sample, n_cores)
       res_mean_list <- c(res_mean_list, setNames(list(res_mean), paste(segment_points[i], "to", segment_points[i + 1])))
-      changes_mean <- append(changes_mean, majority_method(res_mean, nws_mean) + segment_points[i] - 1)
+      changes_mean <- append(changes_mean, majority_rule_mxPBF(res_mean, nws_mean, n) + segment_points[i] - 1)
     }
   }
   mxPBF_result <- list("Result_cov" = res_cov,

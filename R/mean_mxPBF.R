@@ -2,7 +2,7 @@
 #'
 #' This function detects change points in the mean structure of multivariate Gaussian data using the Maximum Pairwise Bayes Factor (mxPBF).
 #' The function selects alpha that controls the empirical False Positive Rate (FPR), as suggested in the paper.
-#' One can conduct a multiscale approach using the function \code{majority_mxPBF()}.
+#' One can conduct a multiscale approach using the function \code{majority_rule_mxPBF()}.
 #'
 #' @param given_data An \eqn{(n \times p)} data matrix representing \eqn{n} observations and \eqn{p} variables.
 #' @param nws A set of window sizes for change point detection.
