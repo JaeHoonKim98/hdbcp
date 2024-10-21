@@ -3,6 +3,7 @@
 #include <omp.h>
 #endif
 #include <cmath>
+#include "mvrnorm.h"
 using namespace Rcpp;
 using namespace arma;
 
@@ -88,7 +89,7 @@ arma::vec cpp_mean2_mxPBF_approx(const arma::mat& X, const arma::mat& Y, double 
 
 // Function to compute the mxPBF
 // [[Rcpp::export]]
-arma::vec cpd_mean_mxPBF2(const arma::mat& X, int nw, double alp, int n_threads) {
+arma::vec cpd_mean_mxPBF(const arma::mat& X, int nw, double alp, int n_threads) {
   if (n_threads == 0) {
     n_threads = omp_get_max_threads() - 1;
   }
@@ -140,7 +141,7 @@ arma::vec cpd_mean_mxPBF2(const arma::mat& X, int nw, double alp, int n_threads)
 
 // Function to compute the mxPBF using simulated samples over a grid of alpha values
 // [[Rcpp::export]]
-arma::mat simulate_mxPBF_mean2(const arma::mat& data, int nw, const arma::vec& alps, int n_samples, int n_threads) {
+arma::mat simulate_mxPBF_mean(const arma::mat& data, int nw, const arma::vec& alps, int n_samples, int n_threads) {
   if (n_threads == 0) {
     n_threads = omp_get_max_threads();
   }
@@ -167,7 +168,7 @@ arma::mat simulate_mxPBF_mean2(const arma::mat& data, int nw, const arma::vec& a
   for (int s = 0; s < n_samples; ++s) {
     arma::vec maxbf(num_alps, arma::fill::zeros);
     arma::mat sample = cpp_mvrnorm(n, mu.t(), var);
-    arma::vec bf = cpd_mean_mxPBF2(sample, nw, alps(0), n_threads);
+    arma::vec bf = cpd_mean_mxPBF(sample, nw, alps(0), n_threads);
     maxbf(0) = arma::max(bf);
     for (int k = 1; k < num_alps; ++k) {
       maxbf(k) = maxbf(0) + cumsum_diffs(k - 1) / 2;

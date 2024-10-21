@@ -17,18 +17,6 @@ cpp_mean2_mxPBF_single <- function(X, Y, log_gamma) {
     .Call(`_hdbcp_cpp_mean2_mxPBF_single`, X, Y, log_gamma)
 }
 
-cpd_mean_mxPBF2 <- function(X, nw, alp, n_threads) {
-    .Call(`_hdbcp_cpd_mean_mxPBF2`, X, nw, alp, n_threads)
-}
-
-simulate_mxPBF_mean2 <- function(data, nw, alps, n_samples, n_threads) {
-    .Call(`_hdbcp_simulate_mxPBF_mean2`, data, nw, alps, n_samples, n_threads)
-}
-
-cpp_mean2_mxPBF_single <- function(X, Y, log_gamma) {
-    .Call(`_hdbcp_cpp_mean2_mxPBF_single`, X, Y, log_gamma)
-}
-
 cpd_mean_mxPBF <- function(X, nw, alp, n_threads) {
     .Call(`_hdbcp_cpd_mean_mxPBF`, X, nw, alp, n_threads)
 }

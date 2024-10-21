@@ -72,48 +72,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// cpd_mean_mxPBF2
-arma::vec cpd_mean_mxPBF2(const arma::mat& X, int nw, double alp, int n_threads);
-RcppExport SEXP _hdbcp_cpd_mean_mxPBF2(SEXP XSEXP, SEXP nwSEXP, SEXP alpSEXP, SEXP n_threadsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< int >::type nw(nwSEXP);
-    Rcpp::traits::input_parameter< double >::type alp(alpSEXP);
-    Rcpp::traits::input_parameter< int >::type n_threads(n_threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpd_mean_mxPBF2(X, nw, alp, n_threads));
-    return rcpp_result_gen;
-END_RCPP
-}
-// simulate_mxPBF_mean2
-arma::mat simulate_mxPBF_mean2(const arma::mat& data, int nw, const arma::vec& alps, int n_samples, int n_threads);
-RcppExport SEXP _hdbcp_simulate_mxPBF_mean2(SEXP dataSEXP, SEXP nwSEXP, SEXP alpsSEXP, SEXP n_samplesSEXP, SEXP n_threadsSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type data(dataSEXP);
-    Rcpp::traits::input_parameter< int >::type nw(nwSEXP);
-    Rcpp::traits::input_parameter< const arma::vec& >::type alps(alpsSEXP);
-    Rcpp::traits::input_parameter< int >::type n_samples(n_samplesSEXP);
-    Rcpp::traits::input_parameter< int >::type n_threads(n_threadsSEXP);
-    rcpp_result_gen = Rcpp::wrap(simulate_mxPBF_mean2(data, nw, alps, n_samples, n_threads));
-    return rcpp_result_gen;
-END_RCPP
-}
-// cpp_mean2_mxPBF_single
-arma::vec cpp_mean2_mxPBF_single(const arma::mat& X, const arma::mat& Y, double log_gamma);
-RcppExport SEXP _hdbcp_cpp_mean2_mxPBF_single(SEXP XSEXP, SEXP YSEXP, SEXP log_gammaSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< const arma::mat& >::type Y(YSEXP);
-    Rcpp::traits::input_parameter< double >::type log_gamma(log_gammaSEXP);
-    rcpp_result_gen = Rcpp::wrap(cpp_mean2_mxPBF_single(X, Y, log_gamma));
-    return rcpp_result_gen;
-END_RCPP
-}
 // cpd_mean_mxPBF
 arma::vec cpd_mean_mxPBF(const arma::mat& X, int nw, double alp, int n_threads);
 RcppExport SEXP _hdbcp_cpd_mean_mxPBF(SEXP XSEXP, SEXP nwSEXP, SEXP alpSEXP, SEXP n_threadsSEXP) {
@@ -161,9 +119,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_hdbcp_cpp_cov2_mxPBF_single", (DL_FUNC) &_hdbcp_cpp_cov2_mxPBF_single, 5},
     {"_hdbcp_cpd_cov_mxPBF", (DL_FUNC) &_hdbcp_cpd_cov_mxPBF, 6},
     {"_hdbcp_simulate_mxPBF_cov", (DL_FUNC) &_hdbcp_simulate_mxPBF_cov, 7},
-    {"_hdbcp_cpp_mean2_mxPBF_single", (DL_FUNC) &_hdbcp_cpp_mean2_mxPBF_single, 3},
-    {"_hdbcp_cpd_mean_mxPBF2", (DL_FUNC) &_hdbcp_cpd_mean_mxPBF2, 4},
-    {"_hdbcp_simulate_mxPBF_mean2", (DL_FUNC) &_hdbcp_simulate_mxPBF_mean2, 5},
     {"_hdbcp_cpp_mean2_mxPBF_single", (DL_FUNC) &_hdbcp_cpp_mean2_mxPBF_single, 3},
     {"_hdbcp_cpd_mean_mxPBF", (DL_FUNC) &_hdbcp_cpd_mean_mxPBF, 4},
     {"_hdbcp_simulate_mxPBF_mean", (DL_FUNC) &_hdbcp_simulate_mxPBF_mean, 5},
