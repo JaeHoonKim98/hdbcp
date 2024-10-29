@@ -77,7 +77,7 @@ mvrnorm(150,mu1,sigma1),
 mvrnorm(150,mu2,sigma1),
 mvrnorm(200,mu2,sigma2)
 )
-mxPBF_mean(Y, nws, alps)
+mxPBF_combined(Y, nws, alps)
 }
 
 }

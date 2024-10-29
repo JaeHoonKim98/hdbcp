@@ -20,7 +20,7 @@ A vector of final detected change points that are common across multiple windows
 This function implements a majority rule-based post-processing approach to identify common change points across multiple window sizes from mxPBF results.
 }
 \examples{
-\donotrun{
+\dontrun{
 n <- 500
 p <- 200
 signal_size <- 1
