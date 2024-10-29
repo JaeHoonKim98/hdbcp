@@ -10,7 +10,7 @@
 #'
 #'
 #' @examples
-#' \donotrun{
+#' \dontrun{
 #' n <- 500
 #' p <- 200
 #' signal_size <- 1
