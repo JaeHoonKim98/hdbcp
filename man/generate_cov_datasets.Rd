@@ -44,7 +44,7 @@ The generated datasets include datasets with and without change points, allowing
 }
 \examples{
 # Generate a default dataset
-datasets <- generate_mean_datasets(100, 50, 1)
+datasets <- generate_cov_datasets(100, 50, 1)
 
 null_data <- datasets[,,1]
 single_many_data <- datasets[,,3]

@@ -1,5 +1,6 @@
 useDynLib(hdbcp, .registration=TRUE)
-exportPattern("^[[:alpha:]]+")
+export(generate_mean_datasets)
+export(generate_cov_datasets)
 export(majority_rule_mxPBF)
 export(mxPBF_mean)
 export(mxPBF_cov)
