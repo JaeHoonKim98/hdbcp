@@ -55,14 +55,14 @@
 #'
 #' @export
 mxPBF_combined <- function(given_data, a0 = 0.01, b0 = 0.01, nws, alps, FPR_want = 0.05, n_sample = 300, n_cores = 1, centering = "skip"){
+  n <- nrow(given_data)
   # Centering
   if (centering == "mean") {
     means <- colMeans(given_data)
     centered_data <- sweep(given_data, 2, means, FUN = "-")
   }
   if (centering == "median") {
-    library(matrixStats)
-    medians <- colMedians(given_data)
+    medians <- apply(given_data, 2, median)
     centered_data <- sweep(given_data, 2, medians, FUN = "-")
   }
   if (centering == "skip") {
