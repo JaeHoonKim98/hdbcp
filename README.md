@@ -99,7 +99,7 @@ n_sample <- 300
 n_cores <- 1
 a0 <- b0 <- 0.01
 
-# Generate dataset with mean changes
+# Generate dataset with covariance changes
 given_datasets <- generate_cov_datasets(n, p, signal_size, sparse, single_point, multiple_points, type = c(1,2,3,4,5))
 ## H0 data
 given_data <- matrix(given_datasets[,,1], n, p)
