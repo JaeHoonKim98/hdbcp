@@ -25,6 +25,4 @@ Imports:
     Rcpp, 
     stats, 
     dplyr
-Suggests:
-    matrixStats
 LinkingTo: Rcpp, RcppArmadillo
