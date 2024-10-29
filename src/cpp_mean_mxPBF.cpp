@@ -90,9 +90,6 @@ arma::vec cpp_mean2_mxPBF_approx(const arma::mat& X, const arma::mat& Y, double 
 // Function to compute the mxPBF
 // [[Rcpp::export]]
 arma::vec cpd_mean_mxPBF(const arma::mat& X, int nw, double alp, int n_threads) {
-  if (n_threads == 0) {
-    n_threads = omp_get_max_threads() - 1;
-  }
 
   int n = X.n_rows;
   int p = X.n_cols;
@@ -142,9 +139,6 @@ arma::vec cpd_mean_mxPBF(const arma::mat& X, int nw, double alp, int n_threads) 
 // Function to compute the mxPBF using simulated samples over a grid of alpha values
 // [[Rcpp::export]]
 arma::mat simulate_mxPBF_mean(const arma::mat& data, int nw, const arma::vec& alps, int n_samples, int n_threads) {
-  if (n_threads == 0) {
-    n_threads = omp_get_max_threads();
-  }
   int n = data.n_rows;
   int p = data.n_cols;
   int num_alps = alps.n_elem;

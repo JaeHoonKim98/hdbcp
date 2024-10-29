@@ -61,9 +61,6 @@ arma::mat cpp_cov2_mxPBF_single(const arma::mat& X, const arma::mat& Y, double a
 // Function to compute mxPBF
 // [[Rcpp::export]]
 arma::vec cpd_cov_mxPBF(const arma::mat& X, double a0, double b0, int nw, double alp, int n_threads) {
-  if (n_threads == 0) {
-    n_threads = omp_get_max_threads() - 1;
-  }
 
   int n = X.n_rows;
   int p = X.n_cols;
@@ -156,9 +153,6 @@ arma::vec cpd_cov_mxPBF(const arma::mat& X, double a0, double b0, int nw, double
 
 // Function to compute an approximate mxPBF, allowing for a small margin of error
 arma::vec cpd_cov_mxPBF_approx(const arma::mat& X, double a0, double b0, int nw, double alp, int n_threads) {
-  if (n_threads == 0) {
-    n_threads = omp_get_max_threads() - 1;
-  }
 
   int n = X.n_rows;
   int p = X.n_cols;
