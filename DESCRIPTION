@@ -13,9 +13,9 @@ Authors@R:
            email="leekjstat@gmail.com")
            )
 Maintainer: JaeHoon Kim <jhkimstat@gmail.com>
-Description: The hdbcp package provides functions suggested in "Bayesian Optimal Change Point Detection in High Dimension" (Kim et al., 2024). 
-    It includes functions to generate simulated datasets with specific covariance and mean structures, enabling robust comparison and evaluation of change point detection techniques.
-    Additionally, the package implements change point detection methods based on the paper.
+Description: Functions suggested in "Bayesian Optimal Change Point Detection in High Dimension" (Kim et al., 2024). 
+    The pacakge implements change point detection methods based on the paper.
+    Additionally, it includes tools to generate simulated datasets with specific covariance and mean structures, enabling robust comparison and evaluation of change point detection techniques.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
