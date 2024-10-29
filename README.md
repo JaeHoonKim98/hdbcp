@@ -12,6 +12,9 @@ devtools::install_github("JaeHoonKim98/hdbcp")
 ## Example
 You can simply run the function using default parameters.
 ```r
+library(hdbcp)
+library(MASS)
+
 nws <- c(25, 60, 100)
 alps <- seq(1,10,0.05)
 
