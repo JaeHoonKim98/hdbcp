@@ -30,7 +30,7 @@
 #' mu <- rep(0,10)
 #' sigma1 <- diag(10)
 #' X <- mvrnorm(500,mu,sigma1)
-#' mxPBF_mean(X, nws, alps)
+#' mxPBF_cov(X, nws, alps)
 #'
 #' ## H1 data
 #' mu <- rep(0,10)
@@ -47,7 +47,7 @@
 #'   }
 #' }
 #' Y <- rbind(mvrnorm(250,mu,sigma1), mvrnorm(250,mu,sigma2))
-#' mxPBF_mean(Y, nws, alps)
+#' mxPBF_cov(Y, nws, alps)
 #' }
 #'
 #' @export
