@@ -15,8 +15,8 @@ You can simply run the function using default parameters.
 library(hdbcp)
 library(MASS)
 
-nws <- c(25, 60, 100)
-alps <- seq(1,10,0.05)
+nws <- c(25, 60, 100) # A set of window sizes
+alps <- seq(1,10,0.05) # A grid of alpha values
 
 # Mean method
 mu1 <- rep(0,10)
@@ -56,20 +56,20 @@ mxPBF_combined(W, nws, alps)
 Alternatively, we can generate data with mean changes and apply the method with specific parameters.
 ```r
 # Set the number of observation, dimension, type of precision matrix, and signals.
-n <- 500
-p <- 200
-pre_value <- 0.3
-pre_proportion <- 0.4
-signal_size <- 1
-single_point <- 250
-multiple_points <- c(150, 300, 350)
+n <- 500 # Number of observations
+p <- 200 # Dimension
+pre_value <- 0.3 # Size of nonzero precision elements
+pre_proportion <- 0.4 # Proportion of nonzero precision elements
+signal_size <- 1 # Size of signals at change point
+single_point <- 250 # Location of change point in single change scenarios
+multiple_points <- c(150, 300, 350) # Location of change points in multiple change scenarios
 
 # Set parameters for mxPBF
-FPR_want <- 0.05
+FPR_want <- 0.05 # Prespecified False Positive Rate when selecting hyperparameter alpha
 nws <- c(25, 60, 100)
 alps <- seq(1,10,0.05)
-n_sample <- 300
-n_cores <- 1
+n_sample <- 300 # Number of generating samples for calculating empirical FPR
+n_cores <- 1 # Number of cores for parellelizing
 
 # Generate dataset with mean changes
 given_datasets <- generate_mean_datasets(n, p, signal_size, pre_proportion, pre_value, single_point, multiple_points, type = c(1,2,3,4,5))
@@ -89,7 +89,7 @@ We can generate data with covariance changes and run the test.
 # Set the number of observation, dimension, type of precision matrix, and signals.
 n <- 500
 p <- 200
-sparse <- FALSE
+sparse <- FALSE # Sparsity of covariance matrix
 signal_size <- 3
 single_point <- 250
 multiple_points <- c(150, 300, 350)
@@ -100,7 +100,7 @@ nws <- c(25, 60, 100)
 alps <- seq(1,10,0.05)
 n_sample <- 300
 n_cores <- 1
-a0 <- b0 <- 0.01
+a0 <- b0 <- 0.01 # Hyperparameters for mxPBF
 
 # Generate dataset with covariance changes
 given_datasets <- generate_cov_datasets(n, p, signal_size, sparse, single_point, multiple_points, type = c(1,2,3,4,5))
