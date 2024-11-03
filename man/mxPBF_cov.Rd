@@ -49,7 +49,7 @@ The function selects alpha that controls the empirical False Positive Rate (FPR)
 One can conduct a multiscale approach using the function \code{majority_rule_mxPBF()}.
 }
 \examples{
-\dontrun{
+\donttest{
 nws <- c(25, 60, 100)
 alps <- seq(1,10,0.05)
 ## H0 data

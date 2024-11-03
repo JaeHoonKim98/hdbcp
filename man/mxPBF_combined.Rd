@@ -49,7 +49,7 @@ The function selects alpha that controls the empirical False Positive Rate (FPR)
 The function conducts a multiscale approach using the function.
 }
 \examples{
-\dontrun{
+\donttest{
 nws <- c(25, 60, 100)
 alps <- seq(1,10,0.05)
 ## H0 data
