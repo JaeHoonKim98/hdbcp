@@ -26,13 +26,13 @@
 #' mu1 <- rep(0,10)
 #' sigma <- diag(10)
 #' X <- mvrnorm_cpp(500, mu1, sigma)
-#' mxPBF_mean(X, nws, alps)
+#' res1 <- mxPBF_mean(X, nws, alps)
 #'
 #' ## H1 data
 #' mu2 <- rep(1,10)
 #' sigma <- diag(10)
 #' Y <- rbind(mvrnorm_cpp(250,mu1,sigma), mvrnorm_cpp(250,mu2,sigma))
-#' mxPBF_mean(Y, nws, alps)
+#' res2 <- mxPBF_mean(Y, nws, alps)
 #' }
 #'
 #' @export

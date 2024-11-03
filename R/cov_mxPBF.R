@@ -30,7 +30,7 @@
 #' mu <- rep(0,10)
 #' sigma1 <- diag(10)
 #' X <- mvrnorm_cpp(500,mu,sigma1)
-#' mxPBF_cov(X, nws, alps)
+#' res1 <- mxPBF_cov(X, nws = nws, alps = alps)
 #'
 #' ## H1 data
 #' mu <- rep(0,10)
@@ -46,8 +46,11 @@
 #'     }
 #'   }
 #' }
-#' Y <- rbind(mvrnorm_cpp(250,mu,sigma1), mvrnorm_cpp(250,mu,sigma2))
-#' mxPBF_cov(Y, nws, alps)
+#' sigma2 <- sigma2 + (abs(min(eigen(sigma2)$value))+0.1)*diag(10) # Make it nonsingular
+#' Y1 <- mvrnorm_cpp(250,mu,sigma1)
+#' Y2 <- mvrnorm_cpp(250,mu,sigma2)
+#' Y <- rbind(Y1, Y2)
+#' res2 <- mxPBF_cov(Y, nws = nws, alps = alps)
 #' }
 #'
 #' @export

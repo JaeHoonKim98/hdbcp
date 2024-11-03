@@ -56,7 +56,7 @@ alps <- seq(1,10,0.05)
 mu1 <- rep(0,10)
 sigma1 <- diag(10)
 X <- mvrnorm_cpp(500, mu1, sigma1)
-mxPBF_combined(X, nws, alps)
+res1 <- mxPBF_combined(X, nws = nws, alps = alps)
 
 ## H1 data
 mu2 <- rep(1,10)
@@ -67,17 +67,17 @@ for (i in 1:10) {
     next
     } else {
     cov_value <- rnorm(1, 1, 1)
-    sigma1[i, j] <- cov_value
-    sigma1[j, i] <- cov_value
+    sigma2[i, j] <- cov_value
+    sigma2[j, i] <- cov_value
     }
   }
 }
-Y <- rbind(
-mvrnorm_cpp(150,mu1,sigma1),
-mvrnorm_cpp(150,mu2,sigma1),
-mvrnorm_cpp(200,mu2,sigma2)
-)
-mxPBF_combined(Y, nws, alps)
+sigma2 <- sigma2 + (abs(min(eigen(sigma2)$value))+0.1)*diag(10) # Make it nonsingular
+Y1 <- mvrnorm_cpp(150, mu1, sigma1)
+Y2 <- mvrnorm_cpp(150, mu2, sigma1)
+Y3 <- mvrnorm_cpp(200, mu2, sigma2)
+Y <- rbind(Y1, Y2, Y3)
+res2 <- mxPBF_combined(Y, nws = nws, alps = alps)
 }
 
 }
