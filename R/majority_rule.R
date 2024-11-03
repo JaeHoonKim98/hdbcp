@@ -18,6 +18,8 @@
 #' pre_proportion <- 0.4
 #' given_datasets <- generate_mean_datasets(n, p, signal_size, pre_proportion, pre_value,
 #' single_point = 250, multiple_points = c(150,300,350), type = 5)
+#' nws <- c(25, 60, 100)
+#' alps <- seq(1,10,0.05)
 #' res_mxPBF <- mxPBF_mean(given_data, nws, alps)
 #' majority_rule_mxPBF(res_mxPBF, nws, n)
 #' }
