@@ -41,8 +41,8 @@
 #'     next
 #'     } else {
 #'     cov_value <- rnorm(1, 1, 1)
-#'     sigma1[i, j] <- cov_value
-#'     sigma1[j, i] <- cov_value
+#'     sigma2[i, j] <- cov_value
+#'     sigma2[j, i] <- cov_value
 #'     }
 #'   }
 #' }
