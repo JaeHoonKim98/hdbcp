@@ -55,7 +55,7 @@ alps <- seq(1,10,0.05)
 ## H0 data
 mu1 <- rep(0,10)
 sigma1 <- diag(10)
-X <- mvrnorm(500, mu1, sigma1)
+X <- mvrnorm_cpp(500, mu1, sigma1)
 mxPBF_combined(X, nws, alps)
 
 ## H1 data
@@ -73,9 +73,9 @@ for (i in 1:10) {
   }
 }
 Y <- rbind(
-mvrnorm(150,mu1,sigma1),
-mvrnorm(150,mu2,sigma1),
-mvrnorm(200,mu2,sigma2)
+mvrnorm_cpp(150,mu1,sigma1),
+mvrnorm_cpp(150,mu2,sigma1),
+mvrnorm_cpp(200,mu2,sigma2)
 )
 mxPBF_combined(Y, nws, alps)
 }

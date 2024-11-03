@@ -55,7 +55,7 @@ alps <- seq(1,10,0.05)
 ## H0 data
 mu <- rep(0,10)
 sigma1 <- diag(10)
-X <- mvrnorm(500,mu,sigma1)
+X <- mvrnorm_cpp(500,mu,sigma1)
 mxPBF_cov(X, nws, alps)
 
 ## H1 data
@@ -72,7 +72,7 @@ for (i in 1:10) {
     }
   }
 }
-Y <- rbind(mvrnorm(250,mu,sigma1), mvrnorm(250,mu,sigma2))
+Y <- rbind(mvrnorm_cpp(250,mu,sigma1), mvrnorm_cpp(250,mu,sigma2))
 mxPBF_cov(Y, nws, alps)
 }
 
