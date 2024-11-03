@@ -13,8 +13,8 @@ Authors@R:
            email="leekjstat@gmail.com")
            )
 Maintainer: JaeHoon Kim <jhkimstat@gmail.com>
-Description: Functions based on "Bayesian Optimal Change Point Detection in High Dimension" (Kim et al., 2024), implementing the paper’s change point detection methods.
-    Additionally, the package includes tools for generating simulated datasets with specific covariance and mean structures, enabling robust comparison and evaluation of change point detection techniques.
+Description: Functions implementing change point detection methods using the maximum pairwise Bayes factor approach.
+    Additionally, the package includes tools for generating simulated datasets for comparing and evaluating change point detection techniques.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
