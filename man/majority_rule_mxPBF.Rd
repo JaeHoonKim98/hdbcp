@@ -7,7 +7,7 @@
 majority_rule_mxPBF(res_mxPBF)
 }
 \arguments{
-\item{result_mxPBFs}{A list of results from \code{mxPBF_mean()} or \code{mxPBF_cov()}.}
+\item{res_mxPBF}{A list of results from \code{mxPBF_mean()} or \code{mxPBF_cov()}.}
 }
 \value{
 A vector of final detected change points that are common across multiple windows based on majority rule.

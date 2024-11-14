@@ -1,7 +1,7 @@
 Package: hdbcp
 Type: Package
 Title: Bayesian Change Point Detection for High-Dimensional Data
-Version: 0.1.0
+Version: 1.0.0
 Authors@R:
     c(person(given = "JaeHoon",
            family = "Kim", 

@@ -2,7 +2,7 @@
 #'
 #' This function implements a majority rule-based post-processing approach to identify common change points across multiple window sizes from mxPBF results.
 #'
-#' @param result_mxPBFs A list of results from \code{mxPBF_mean()} or \code{mxPBF_cov()}.
+#' @param res_mxPBF A list of results from \code{mxPBF_mean()} or \code{mxPBF_cov()}.
 #'
 #' @return A vector of final detected change points that are common across multiple windows based on majority rule.
 #'
@@ -47,13 +47,16 @@ majority_rule_mxPBF <- function(res_mxPBF) {
       }
       for (i in 1:length(candidate_group_list)) {
         most_interval <- which(sapply(candidate_group_list, length) == max(sapply(candidate_group_list, length)))
-        if (max(sapply(candidate_group_list, length)) >= majority_criterion) {
+        if (max(sapply(candidate_group_list[most_interval], length)) >= majority_criterion) {
           if (length(most_interval) > 1) {
-            most_interval <- most_interval[which.min(sapply(candidate_group_list[most_interval], var))]
+            most_interval <- most_interval[which.min(sapply(candidate_group_list[most_interval], sample_variance))]
           }
           selected_group <- candidate_group_list[[most_interval]]
           selected_group_list <- append(selected_group_list, list(selected_group))
-          candidate_group_list[[most_interval]] <- 0
+          candidate_group_list[[most_interval]] <- NULL
+          candidate_group_list <- lapply(candidate_group_list, function(x) {
+            x[x %notin% unlist(selected_group_list)]
+          })
         }
       }
     }

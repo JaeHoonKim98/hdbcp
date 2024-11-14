@@ -85,12 +85,11 @@ for (set in 1:nrow(settings)) {
       results_others$info[[index_others]] <- I(res_mxPBF)
 
       ## GeomPELT method
-      cps_geom <- geomcp(given_data, msl = nws[1], penalty = "MBIC")
-      cp_distance <- cpt.np(cps_geom@distance, penalty = "MBIC",
+      cp_distance <- cpt.np(distance.mapping(given_data), penalty = "MBIC",
                             method="PELT", test.stat="empirical_distribution",
                             class=TRUE, minseglen=nws[1],
                             nquantiles =4*log(n))
-      cp_angle <- cpt.np(cps_geom@angle, penalty = "MBIC",
+      cp_angle <- cpt.np(angle.mapping(given_data), penalty = "MBIC",
                          method="PELT", test.stat="empirical_distribution",
                          class=TRUE, minseglen=nws[1],
                          nquantiles =4*log(n))
