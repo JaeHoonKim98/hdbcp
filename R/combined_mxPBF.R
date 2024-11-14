@@ -71,7 +71,7 @@ mxPBF_combined <- function(given_data, a0 = 0.01, b0 = 0.01, nws, alps, FPR_want
   # Applying covariance method
   res_cov <- mxPBF_cov(given_data = centered_data, a0 = a0, b0 = b0, nws = nws, alps = alps, FPR_want = FPR_want, n_sample = n_sample, n_cores = n_cores, centering = "skip")
 
-  changes_cov <- majority_rule_mxPBF(res_cov, nws, n)
+  changes_cov <- majority_rule_mxPBF(res_cov)
 
   res_mean_list <- list()
   changes_mean <- list()
@@ -84,7 +84,7 @@ mxPBF_combined <- function(given_data, a0 = 0.01, b0 = 0.01, nws, alps, FPR_want
     if (length(nws_mean)>0) {
       res_mean <- mxPBF_mean(data_segmented, nws_mean, alps, FPR_want, n_sample, n_cores)
       res_mean_list <- c(res_mean_list, setNames(list(res_mean), paste(segment_points[i], "to", segment_points[i + 1])))
-      changes_mean <- append(changes_mean, majority_rule_mxPBF(res_mean, nws_mean, n) + segment_points[i] - 1)
+      changes_mean <- append(changes_mean, majority_rule_mxPBF(res_mean) + segment_points[i] - 1)
     }
   }
   mxPBF_result <- list("Result_cov" = res_cov,
