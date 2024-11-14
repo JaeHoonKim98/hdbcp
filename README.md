@@ -2,7 +2,12 @@
 Bayesian Change Point Detection for High-Dimensional Data
 
 ## Installation
-Up-to-date development version of hdbcp can be obtained from github:
+To install the released version of **hdbcp** from CRAN, use:
+```r
+install.packages("hdbcp")
+```
+
+Alternatively, to install the latest development version from GitHub:
 ```r
 ## install.packages("devtools")
 ## library(devtools)
