@@ -81,7 +81,7 @@ for (set in 1:nrow(settings)) {
                               results_others$Replication == r &
                               results_others$Data_Type == data_types_df[t] &
                               results_others$Method == "mxPBF_major")
-      results_cps$Detected_Change_Points[[index_cps]] <- majority_method(res_mxPBF, nws)
+      results_cps$Detected_Change_Points[[index_cps]] <- majority_rule_mxPBF(res_mxPBF)
       results_others$info[[index_others]] <- I(res_mxPBF)
 
 
