@@ -36,7 +36,7 @@ p <- ncol(scaled_matrix)
 data("SP500_base", package = "SP500R")
 
 filtered_data <- as.data.frame(SP500_base) %>%
-  filter(Date >= as.Date("2015-07-01") & Date <= as.Date("2017-07-31"))
+  filter(Date >= as.Date("2015-07-01") & Date <= as.Date("2016-12-31"))
 matrix_data <- filtered_data %>%
   select(Date, Name, Close) %>%
   pivot_wider(names_from = Name, values_from = Close)
@@ -77,17 +77,30 @@ cpt_angle <- cpt.np(angle.mapping(scaled_matrix), penalty = "CROPS", pen.value =
                     method="PELT", test.stat="empirical_distribution",
                     class=TRUE, minseglen=10,
                     nquantiles =4*log(length(distance.mapping(scaled_matrix))))
-### Diagnostic plots for the CROPS algorithm
+### Diagnostic plots for the CROPS algorithm (Gene data)
 plot(cpt_distance, diagnostic = TRUE)
 title(main = "Diagnostic Plot for cpt_distance")
+sort(cpt_distance@pen.value.full, decreasing = T)
 cpt_distance@pen.value.full
-arrows(14, 7, 14, 12, col = "black", lwd = 2, length = 0.05)
+arrows(46, 7, 46, 12, col = "black", lwd = 2, length = 0.05)
 plot(cpt_angle, diagnostic = TRUE)
 title(main = "Diagnostic Plot for cpt_angle")
 cpt_angle@pen.value.full
-arrows(8, 18, 8, 24, col = "black", lwd = 2, length = 0.05)
+arrows(42, 8, 42, 13, col = "black", lwd = 2, length = 0.05)
 
-cp_Geomcp <- geom_CROPS(scaled_matrix, num_distance = 14, num_angle = 8, nws[1])
+cp_Geomcp <- geom_CROPS(scaled_matrix, num_distance = 46, num_angle = 42, nws[1])
+
+### Diagnostic plots for the CROPS algorithm (Stock data)
+plot(cpt_distance, diagnostic = TRUE)
+title(main = "Diagnostic Plot for cpt_distance")
+cpt_distance@pen.value.full
+arrows(13, 7, 13, 10, col = "black", lwd = 2, length = 0.05)
+plot(cpt_angle, diagnostic = TRUE)
+title(main = "Diagnostic Plot for cpt_angle")
+cpt_angle@pen.value.full
+arrows(5, 31, 5, 35, col = "black", lwd = 2, length = 0.05)
+
+cp_Geomcp <- geom_CROPS(scaled_matrix, num_distance = 13, num_angle = 5, nws[1])
 
 # Analyze Results
 ## The number of detected change points
@@ -123,14 +136,16 @@ plot <- ggplot(scaled_melted, aes(x = Var1, y = Var2, fill = value)) +
   geom_tile() +
   scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0) +
   geom_vline(xintercept = cp_mxPBF, linetype = "dotted", color = "black") +
-  labs(title = "Detected Change Point (mxPBF)", x = "Date", y = "Individuals", fill = "Intensity") +
+  labs(title = "Detected Change Point (mxPBF)", x = "Positions", y = "Individuals", fill = "Intensity") +
   theme_minimal() +
   theme(
-    plot.title = element_text(size = 20),
-    axis.title.x = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
+    plot.title = element_text(size = 15),
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12),
+    legend.title = element_text(size = 12),
     axis.text.x = element_blank(),
-    axis.text.y = element_text(size = 12)
+    axis.text.y = element_text(size = 10),
+    legend.text = element_text(size = 10)
   )
 ggsave(
   filename = "real_gene.png",
@@ -140,14 +155,6 @@ ggsave(
   dpi = 600,
   device = "png"
 )
-ggplot(scaled_melted, aes(x = Var1, y = Var2, fill = value)) +
-  geom_tile() +
-  scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0) +
-  geom_vline(xintercept = cp_mxPBF, linetype = "dashed", color = "lightgreen") +
-  geom_vline(xintercept = cp_Geomcp, linetype = "dashed", color = "orange") +
-  labs(title = "Detected Change Point (mxPBF vs Geom)", x = "Locus", y = "Individuals", fill = "Intensity") +
-  theme_minimal() +
-  theme(axis.text.x = element_blank())
 
 ## Stock Data
 rownames(scaled_matrix) <- as.Date(unlist(date_column))
@@ -157,25 +164,29 @@ scaled_melted$Var1 <- as.factor(scaled_melted$Var1)
 breaks_to_show <- unlist(date_column)[seq(1, length(unlist(date_column)), length.out = 5)]
 labels_to_show <- as.character(format(as.Date(unlist(date_column))[seq(1, length(unlist(date_column)), length.out = 5)], "%Y-%m"))
 
-plot <- ggplot(scaled_melted, aes(x = Var1, y = Var2, fill = value)) +  # Var1은 factor 형식
+plot_s <- ggplot(scaled_melted, aes(x = Var1, y = Var2, fill = value)) +  # Var1은 factor 형식
   geom_tile() +
   scale_fill_gradient2(low = "blue", mid = "white", high = "red", midpoint = 0) +
   geom_vline(xintercept = as.factor(as.numeric(date_column[cp_mxPBF, ])), linetype = "dotted", color = "black") +
-  labs(title = "Detected Change Point (mxPBF)", x = "Date", y = "Companies", fill = "Return") +
+  labs(title = "Detected Change Point (mxPBF)", x = "Dates", y = "Companies", fill = "Return") +
   scale_x_discrete(breaks = breaks_to_show, labels = labels_to_show) +
   theme_minimal() +
   theme(
-    plot.title = element_text(size = 20),
-    axis.title.x = element_text(size = 15),
-    axis.title.y = element_text(size = 15),
-    axis.text.x = element_text(size = 12),
-    axis.text.y = element_blank()
+    plot.title = element_text(size = 15),
+    axis.title.x = element_text(size = 12),
+    axis.title.y = element_text(size = 12),
+    legend.title = element_text(size = 12),
+    axis.text.x = element_text(size = 10),
+    axis.text.y = element_blank(),
+    legend.text = element_text(size = 10)
   )
 ggsave(
   filename = "real_stock.png",
-  plot = plot,
+  plot = plot_s,
   width = 10,
   height = 4,
   dpi = 600,
   device = "png"
 )
+
+date_column[cp_mxPBF,]
